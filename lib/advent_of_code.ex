@@ -1,12 +1,14 @@
 defmodule AdventOfCode do
   def get_floor(instructions) do
-    instructions
-    |> String.split("")
-    |> Enum.map(fn
+    eval = fn
       "(" -> 1
       ")" -> -1
       _ -> 0
-    end)
+    end
+
+    instructions
+    |> String.split("")
+    |> Enum.map(eval)
     |> Enum.sum()
   end
 end

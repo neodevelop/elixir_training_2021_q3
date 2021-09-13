@@ -16,6 +16,22 @@ defmodule ListOperations do
     exec_my_map(t, function, res ++ [function.(h)])
   end
 
+  def filter(list, condition) do
+    apply_filter(list, condition, [])
+  end
+
+  defp apply_filter([], _condition, res), do: res
+
+  defp apply_filter([h | t], condition, res) do
+    case condition.(h) do
+      true ->
+        apply_filter(t, condition, res ++ [h])
+
+      false ->
+        apply_filter(t, condition, res)
+    end
+  end
+
   # Obtener la longitud de una lista
   # Obtener el máximo común divisor
 end

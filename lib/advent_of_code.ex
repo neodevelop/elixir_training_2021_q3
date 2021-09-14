@@ -1,4 +1,11 @@
 defmodule AdventOfCode do
+  def get_basement(instructions) do
+    instructions
+    |> String.split("", trim: true)
+    |> follow_instructions()
+    |> Enum.find(fn {_, f, _} -> f == -1 end)
+  end
+
   def get_floor(instructions) do
     alias String, as: S
     import Enum, only: [map: 2, sum: 1]
@@ -27,5 +34,24 @@ defmodule AdventOfCode do
       char == ")" -> -1
       true -> 0
     end
+  end
+
+  defp follow_instructions(list) do
+    # follow_instructions(list, {0, 0})
+    follow_instructions_2(list, [{0, 0, ""}])
+  end
+
+  defp follow_instructions(_l, {_index, -1} = res), do: res
+  defp follow_instructions([], res), do: res
+
+  defp follow_instructions([h | t], {index, floor}) do
+    follow_instructions(t, {index + 1, eval(h) + floor})
+  end
+
+  defp follow_instructions_2([], index_with_floor), do: index_with_floor
+
+  defp follow_instructions_2([h | t], index_with_floor) do
+    {index, floor, _} = index_with_floor |> List.last()
+    follow_instructions_2(t, index_with_floor ++ [{index + 1, eval(h) + floor, h}])
   end
 end

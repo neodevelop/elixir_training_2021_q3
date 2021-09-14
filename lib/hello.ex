@@ -1,5 +1,7 @@
 defmodule Hello do
   def greet do
-    IO.inspect("Hello")
+    receive do
+      _ -> IO.puts("Hello")
+    end
   end
 end

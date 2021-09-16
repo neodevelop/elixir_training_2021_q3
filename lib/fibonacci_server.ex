@@ -1,6 +1,6 @@
 defmodule FibonacciServer do
   def start(parent) do
-    spawn(FibonacciServer, :loop, [parent])
+    spawn(__MODULE__, :loop, [parent])
   end
 
   def loop(parent) do

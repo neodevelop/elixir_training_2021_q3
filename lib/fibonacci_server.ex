@@ -1,14 +1,20 @@
 defmodule FibonacciServer do
-  def start() do
-    spawn(FibonacciServer, :loop, [])
+  def start(parent) do
+    spawn(FibonacciServer, :loop, [parent])
   end
 
-  def loop() do
+  def loop(parent) do
     receive do
-      {:compute, n} -> IO.puts(Fibonacci.sequence(n))
-      _ -> IO.puts("Error")
-    end
+      {:compute, n} ->
+        send(parent, {:ok, Fibonacci.sequence(n)})
+        loop(parent)
 
-    loop()
+      :kill ->
+        send(parent, {:ok, :killed})
+
+      _ ->
+        send(parent, {:error, :invalid})
+        loop(parent)
+    end
   end
 end

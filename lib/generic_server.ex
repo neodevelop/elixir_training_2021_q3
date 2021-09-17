@@ -1,6 +1,8 @@
 defmodule GenericServer do
-  def start(module, parent) do
-    spawn(fn -> loop(module, parent, 0) end)
+  def start(module) do
+    Process.flag(:trap_exit, true)
+    parent = self()
+    spawn_link(fn -> loop(module, parent, 0) end)
   end
 
   def loop(callback_module, parent, state) do

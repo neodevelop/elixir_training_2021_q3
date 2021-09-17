@@ -7,8 +7,9 @@ defmodule Fibonacci do
   end
 
   def handle_message({:compute, n}, parent, state) do
-    send(parent, {:ok, sequence(n)})
-    {:ok, state + 1}
+    result = sequence(n)
+    send(parent, {:ok, result})
+    {:ok, [result | state]}
   end
 
   def handle_message(:show, parent, state) do
@@ -17,6 +18,6 @@ defmodule Fibonacci do
   end
 
   def handle_message(_, _parent, state) do
-    {:ok, state + 1}
+    {:ok, state}
   end
 end

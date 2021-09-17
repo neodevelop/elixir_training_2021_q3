@@ -6,18 +6,15 @@ defmodule Fibonacci do
     sequence(n - 1) + sequence(n - 2)
   end
 
-  def handle_message(parent) do
-    receive do
-      {:compute, n} ->
-        send(parent, {:ok, Fibonacci.sequence(n)})
-        handle_message(parent)
+  def handle_message({:compute, n}, parent) do
+    send(parent, {:ok, sequence(n)})
+  end
 
-      :kill ->
-        send(parent, {:ok, :killed})
+  def handle_message(:kill, parent) do
+    send(parent, {:ok, :killed})
+  end
 
-      _ ->
-        send(parent, {:error, :invalid})
-        handle_message(parent)
-    end
+  def handle_message(_, _parent) do
+    :ok
   end
 end

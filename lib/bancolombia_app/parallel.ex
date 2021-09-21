@@ -1,4 +1,10 @@
 defmodule BancolombiaApp.Parallel do
+  def pmap2(collection, fun) do
+    collection
+    |> Enum.map(&Task.async(fn -> fun.(&1) end))
+    |> Enum.map(&Task.await/1)
+  end
+
   def pmap(collection, fun) do
     collection
     |> Enum.map(&spawn_process_for_my_collection(&1, self(), fun))

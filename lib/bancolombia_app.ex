@@ -1,18 +1,11 @@
 defmodule BancolombiaApp do
-  @moduledoc """
-  Documentation for `BancolombiaApp`.
-  """
+  use Application
 
-  @doc """
-  Hello world.
+  def start(_type, _args) do
+    children = [
+      {BancolombiaApp.TodoSupervisor, []}
+    ]
 
-  ## Examples
-
-      iex> BancolombiaApp.hello()
-      :world
-
-  """
-  def hello do
-    :world
+    Supervisor.start_link(children, strategy: :one_for_one)
   end
 end

@@ -4,7 +4,7 @@ defmodule BancolombiaApp.TodoServer do
   ## Client impl
 
   def start_link(_init) do
-    GenServer.start_link(__MODULE__, [])
+    GenServer.start_link(__MODULE__, [], name: __MODULE__)
   end
 
   def list(pid) do

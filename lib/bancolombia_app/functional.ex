@@ -1,4 +1,4 @@
-defmodule Functional do
+defmodule BancolombiaApp.Functional do
   def unique_letters(name) do
     "Hello " <> name
   end

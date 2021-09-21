@@ -1,4 +1,4 @@
-defmodule GenericServer do
+defmodule BancolombiaApp.GenericServer do
   def start(module, parent \\ self(), init) do
     Process.flag(:trap_exit, true)
     spawn_link(__MODULE__, :loop, [module, parent, init])

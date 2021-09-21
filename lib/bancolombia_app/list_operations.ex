@@ -1,4 +1,4 @@
-defmodule ListOperations do
+defmodule BancolombiaApp.ListOperations do
   def sum(list) do
     sum(list, 0)
   end

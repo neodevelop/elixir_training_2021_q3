@@ -1,4 +1,4 @@
-defmodule Parallel do
+defmodule BancolombiaApp.Parallel do
   def pmap(collection, fun) do
     collection
     |> Enum.map(&spawn_process_for_my_collection(&1, self(), fun))

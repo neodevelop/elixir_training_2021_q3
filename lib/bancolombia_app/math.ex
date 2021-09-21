@@ -1,4 +1,4 @@
-defmodule Math do
+defmodule BancolombiaApp.Math do
   @moduledoc """
   Este es el componente que agrupa las funciones matemáticas
   que vamos a estar utilizando en nuestra aplicación

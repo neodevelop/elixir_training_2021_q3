@@ -1,4 +1,4 @@
-defmodule Fibonacci do
+defmodule BancolombiaApp.Fibonacci do
   def sequence(0), do: 0
   def sequence(1), do: 1
 

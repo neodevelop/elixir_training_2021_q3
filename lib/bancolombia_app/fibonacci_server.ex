@@ -1,4 +1,4 @@
-defmodule FibonacciServer do
+defmodule BancolombiaApp.FibonacciServer do
   def start(parent) do
     spawn(__MODULE__, :loop, [parent])
   end

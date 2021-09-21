@@ -1,4 +1,4 @@
-defmodule Hello do
+defmodule BancolombiaApp.Hello do
   def greet(target) do
     receive do
       {:greet, message} ->

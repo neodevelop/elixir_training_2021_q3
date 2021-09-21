@@ -8,7 +8,8 @@ defmodule BancolombiaApp.TodoSupervisor do
   def init(_init_arg) do
     children = [
       {BancolombiaApp.TodoServer, []},
-      {BancolombiaApp.FibonacciGenServer, []}
+      {BancolombiaApp.FibonacciGenServer, []},
+      {Task.Supervisor, [name: BancolombiaApp.TaskSupervisor]}
     ]
 
     Supervisor.init(children, strategy: :one_for_one)

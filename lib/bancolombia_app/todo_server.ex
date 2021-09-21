@@ -3,12 +3,16 @@ defmodule BancolombiaApp.TodoServer do
 
   ## Client impl
 
-  def list(server) do
-    GenServer.call(server, :get)
+  def start_link(_init) do
+    GenServer.start_link(__MODULE__, [])
   end
 
-  def put(server, todo) do
-    GenServer.cast(server, {:put, todo})
+  def list(pid) do
+    GenServer.call(pid, :get)
+  end
+
+  def put(pid, todo) do
+    GenServer.cast(pid, {:put, todo})
   end
 
   ## Callbacks impl

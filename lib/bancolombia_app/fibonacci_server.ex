@@ -6,7 +6,7 @@ defmodule BancolombiaApp.FibonacciServer do
   def loop(parent) do
     receive do
       {:compute, n} ->
-        send(parent, {:ok, Fibonacci.sequence(n)})
+        send(parent, {:ok, BancolombiaApp.Fibonacci.sequence(n)})
         loop(parent)
 
       :kill ->

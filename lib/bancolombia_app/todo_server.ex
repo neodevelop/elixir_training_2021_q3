@@ -15,6 +15,11 @@ defmodule BancolombiaApp.TodoServer do
     GenServer.cast(pid, {:put, todo})
   end
 
+  # TODO
+  # def find()
+  # def update()
+  # def finish()
+
   ## Callbacks impl
   @impl true
   def init(args) do
